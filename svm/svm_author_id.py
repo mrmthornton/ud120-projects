@@ -24,6 +24,10 @@ features_train, features_test, labels_train, labels_test = preprocess()
 
 #########################################################
 ### your code goes here ###
+import svm
+
+if __name__ == '__main__':
+    svm
 
 #########################################################
 
