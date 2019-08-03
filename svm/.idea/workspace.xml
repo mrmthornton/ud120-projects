@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d5f1975-a2cf-46aa-86dd-4a6fad6bcb1a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../naive_bayes/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../naive_bayes/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../decision_tree/dt_author_id.py" beforeDir="false" afterPath="$PROJECT_DIR$/../decision_tree/dt_author_id.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/svm_author_id.py" beforeDir="false" afterPath="$PROJECT_DIR$/svm_author_id.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
