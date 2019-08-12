@@ -23,6 +23,7 @@ dictionary = pickle.load( open("../final_project/final_project_dataset_modified.
 ### list the features you want to look at--first item in the 
 ### list will be the "target" feature
 features_list = ["bonus", "salary"]
+##features_list = ["bonus", "long_term_incentive"]  # try LTI as a feature
 data = featureFormat( dictionary, features_list, remove_any_zeroes=True)
 target, features = targetFeatureSplit( data )
 
@@ -38,10 +39,17 @@ test_color = "r"
 ### Please name it reg, so that the plotting code below picks it up and 
 ### plots it correctly. Don't forget to change the test_color above from "b" to
 ### "r" to differentiate training points from test points.
-from sklearn import linear_model
-reg = linear_model.LinearRegression()
+from sklearn.linear_model import LinearRegression
+reg = LinearRegression()
 reg.fit (feature_train, target_train)
 
+salary = 600000
+print "predict for salary", salary, reg.predict([salary])
+print "slope is", reg.coef_
+print "intercept is", reg.intercept_
+
+print "r-squared on training set", reg.score(feature_train, target_train)
+print "r-squared test", reg.score(feature_test, target_test)
 
 
 
@@ -66,6 +74,10 @@ try:
     plt.plot( feature_test, reg.predict(feature_test) )
 except NameError:
     pass
+reg.fit (feature_test, target_test)
+plt.plot(feature_train, reg.predict(feature_train), color="b")
+print "test data slope is", reg.coef_
+
 plt.xlabel(features_list[1])
 plt.ylabel(features_list[0])
 plt.legend()
