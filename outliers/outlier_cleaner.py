@@ -11,9 +11,13 @@ def outlierCleaner(predictions, ages, net_worths):
         each tuple is of the form (age, net_worth, error).
     """
     
-    cleaned_data = []
 
     ### your code goes here
+    l = len(ages)
+    return_length = int(l*0.9)
+    with_error = zip(ages, net_worths, (net_worths - predictions)**2)
+    sort_by_err = sorted(with_error, key = lambda x: x[2])
+    cleaned_data = sort_by_err[:return_length] #select first 90%
 
     
     return cleaned_data
