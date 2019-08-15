@@ -49,12 +49,8 @@ try:
     predictions = reg.predict(ages_train)
     cleaned_data = outlierCleaner( predictions, ages_train, net_worths_train )
 except NameError:
-    print "your regression object doesn't exist, or isn't name reg"
+    print "your regression object doesn't exist, or isn't name 'reg'"
     print "can't make predictions to use in identifying outliers"
-
-
-
-
 
 
 
@@ -67,6 +63,8 @@ if len(cleaned_data) > 0:
     ### refit your cleaned data!
     try:
         reg.fit(ages, net_worths)
+        print
+        print "after cleaning ->"
         print "slope is", reg.coef_
         print "intercept is", reg.intercept_
         print "score is", reg.score(ages_test, net_worths_test)
