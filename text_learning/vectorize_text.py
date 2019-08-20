@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 
 import os
 import pickle
@@ -29,13 +30,10 @@ from_chris = open("from_chris.txt", "r")
 from_data = []
 word_data = []
 
-### temp_counter is a way to speed up the development--there are
-### thousands of emails from Sara and Chris, so running over all of them
-### can take a long time
-### temp_counter helps you only look at the first 200 emails in the list so you
-### can iterate your modifications quicker
+### temp_counter is a way to speed up the development
+### there are thousands of emails from Sara and Chris, so running over all of them can take a long time
+### temp_counter helps you only look at the first 200 emails in the list so you can iterate your modifications quicker
 temp_counter = 0
-
 
 for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
     for path in from_person:
@@ -71,5 +69,7 @@ pickle.dump( from_data, open("your_email_authors.pkl", "w") )
 
 
 ### in Part 4, do TfIdf vectorization here
-
+from sklearn.feature_extraction.text import CountVectorizer
+from nltk.corpus import stopwords
+stop_words = stopwords("english")
 
