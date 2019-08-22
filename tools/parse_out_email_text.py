@@ -13,7 +13,7 @@ def parseOutText(f):
         example use case:
         f = open("email_file_name.txt", "r")
         text = parseOutText(f)
-        
+
         """
 
 
@@ -25,25 +25,31 @@ def parseOutText(f):
     words = ""
     if len(content) > 1:
         ### remove punctuation
-        text_string = content[1].translate(string.maketrans("", ""), string.punctuation)
+        text_string = content[1].translate(string.maketrans("", ""), string.punctuation)  # type: object
 
         ### project part 2: comment out the line below
-        words = text_string
+        #words = text_string
 
         ### split the text string into individual words, stem each word,
         ### and append the stemmed word to words (make sure there's a single
         ### space between each stemmed word)
-        
+        words = text_string.split()
+        stemmer = SnowballStemmer("english")
+        #words_stems = [stemmer.stem(word) for word in words]
+        words_stems = []
+        for word in words:
+            target_word = stemmer.stem(word)
+            words_stems.append(target_word)
 
-
-
+        words = ' '.join(words_stems)
 
     return words
 
     
 
 def main():
-    ff = open("../text_learning/test_email.txt", "r")
+    #ff = open("../text_learning/test_email.txt", "r")
+    ff = open("../maildir/germany-c/_sent_mail/1", "r")
     text = parseOutText(ff)
     print text
 
