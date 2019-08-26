@@ -1,6 +1,7 @@
 *.gz
 *.png
 *.pyc
+*.save
 *.tar
 enron_mail_20110402.tgz
 enron_mail_20110402/
