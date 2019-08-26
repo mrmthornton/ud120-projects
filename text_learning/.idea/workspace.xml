@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="381c9dc4-bb8f-4186-96a8-9c441affe89c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/test_nltk.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_nltk.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vectorize_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/vectorize_text.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../tools/parse_out_email_text.py" beforeDir="false" afterPath="$PROJECT_DIR$/../tools/parse_out_email_text.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -173,7 +172,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/vectorize_text.py</url>
-          <line>98</line>
+          <line>70</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
