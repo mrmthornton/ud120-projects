@@ -47,9 +47,9 @@ def parseOutText(f):
 
     
 
-def main():
-    #ff = open("../text_learning/test_email.txt", "r")
-    ff = open("../maildir/germany-c/_sent_mail/1", "r")
+def main(): # for test purposes only
+    ff = open("../text_learning/test_email.txt", "r")
+    #ff = open("../maildir/germany-c/_sent_mail/1", "r")
     text = parseOutText(ff)
     print text
 
