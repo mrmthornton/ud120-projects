@@ -3,7 +3,6 @@
 
 import os
 import pickle
-import re
 import sys
 
 sys.path.append("../tools/")
@@ -47,7 +46,8 @@ for name, from_person in [("sara", from_sara), ("chris", from_chris)]:
             text_parsed = parseOutText(email)
             ### use str.replace() to remove any instances of the words
             ### ["sara", "shackleton", "chris", "germani"]
-            remove_words = ("sara", "shackleton", "chris", "germani")
+            remove_words = ("sara", "shackleton", "chris", "germani",
+                            "sshacklensf", "cgermannsf")  # see lesson 12-29, feature selection
             text_no_signature = text_parsed
             for remove_word in remove_words:
                 text_no_signature = text_no_signature.replace(remove_word, "")
