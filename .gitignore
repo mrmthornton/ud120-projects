@@ -6,4 +6,6 @@
 *.tar
 *.tgz
 *.xml
+*/.idea/workspace.xml
 maildir/
+
