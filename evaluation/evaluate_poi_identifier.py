@@ -38,12 +38,19 @@ data_train, data_test, labels_train, labels_test = \
 
 from sklearn.tree import DecisionTreeClassifier
 dtc = DecisionTreeClassifier()
-
-#dtc.fit(features,labels)
-#accuracy = dtc.score(features,labels)
 dtc.fit(data_train, labels_train)
-accuracy = dtc.score(data_test, labels_test)
 
-print(accuracy)
+predictions = dtc.predict(data_test, labels_test)
+print "actual POI's", sum(labels_test)
+print "predicted POI's", sum(predictions)
+print "number of people in test set", len(predictions)
+print [1 for a,b in zip(labels_test, predictions) if (a ==1 and b==1) ]
+from sklearn.metrics import precision_score, recall_score
+
+print "precision",precision_score(labels_test,predictions)
+print "recall",recall_score(labels_test,predictions)
+
+accuracy = dtc.score(data_test, labels_test)
+print "accuracy is ", accuracy
 
 
