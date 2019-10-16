@@ -35,7 +35,7 @@ labels, features = targetFeatureSplit(data)
 
 from sklearn.cross_validation import train_test_split
 data_train, data_test, labels_train, labels_test = \
-                           train_test_split(features, labels, test_size=0.30, random_state=42)
+                train_test_split(features, labels, test_size=0.30, random_state=42)
 
 from sklearn.tree import DecisionTreeClassifier
 dtc = DecisionTreeClassifier()
