@@ -41,46 +41,128 @@ features_list = ['poi', 'salary', 'bonus', 'total_payments',
                  'deferred_income', 'long_term_incentive',
                  'from_this_person_to_poi']
 
-
-data = featureFormat(data_dict, features_list)
+data = featureFormat(data_dict, features_list, sort_keys = False)
 #data = featureFormat(data_dict, features_list, sort_keys = True)
 
 ################################################################################
 ### Task 2: Remove outliers
-
+# create a dict of value, key to look up the index for a used feature.
 enumerated_feature_list = dict(enumerate(features_list))
 index_for = dict((v,k) for k,v in enumerated_feature_list.iteritems())
 
-selection_with_outliers = [[elem[index_for['salary']],
-                           elem[index_for['bonus']],
-                elem[index_for['salary']] * elem[index_for['bonus']]
-        ] for elem in data]
 
-sort_by_feature = sorted(selection_with_outliers, key = lambda x: x[2])
 
-return_length = int(len(data)*0.97)
-data_no_outliers = sort_by_feature[:return_length] #select first 90%
-print 'number of outliers removed',\
-                           len(selection_with_outliers)-len(data_no_outliers)
 
 import matplotlib.pyplot as plt
 
+# remove outliers based on "salary"
+sort_by_feature = sorted(data, key = lambda x: x[index_for['salary']])
+data_no_outliers = sort_by_feature[:]
+'''
 plt.figure(1)
 plt.title('Salary v Bonus')
-for point in selection_with_outliers:
-    plt.scatter( point[index_for['salary']], point[index_for['bonus']] )
+for point in data:
+    plt.scatter( point[index_for['salary']], point[index_for['bonus']])
 plt.xlabel("salary")
 plt.ylabel("bonus")
-
+'''
+# remove outliers based on "bonus"
+sort_by_feature = sorted(data_no_outliers, key = lambda x: x[index_for['bonus']])
+print(sort_by_feature[-1][index_for['poi']])
+data_no_outliers = sort_by_feature[:-1]
+'''
 plt.figure(2)
 plt.title('Salary v Bonus removed outliers')
 for point in data_no_outliers:
     plt.scatter( point[index_for['salary']], point[index_for['bonus']] )
 plt.xlabel("salary")
 plt.ylabel("bonus")
+'''
+'''
+plt.figure(3)
+plt.title('Salary v total_payments')
+for point in data_no_outliers:
+    plt.scatter( point[index_for['salary']], point[index_for['total_payments']] )
+plt.xlabel("salary")
+plt.ylabel("total_payments")
+'''
+# remove outliers based on "total payments"
+sort_by_feature = sorted(data_no_outliers, key = lambda x: x[index_for['total_payments']])
+print(sort_by_feature[-1][index_for['poi']])
+data_no_outliers = sort_by_feature[:-1]
+'''
+plt.figure(4)
+plt.title('Salary v total_payments removed outliers')
+for point in data_no_outliers:
+    plt.scatter( point[index_for['salary']], point[index_for['total_payments']] )
+plt.xlabel("salary")
+plt.ylabel("total_payments")
+'''
+'''
+plt.figure(5)
+plt.title('Salary v total_stock_value')
+for point in data_no_outliers:
+    plt.scatter( point[index_for['salary']], point[index_for['total_stock_value']] )
+plt.xlabel("salary")
+plt.ylabel("total_stock_value")
+'''
+# remove outliers based on "total stock value"
+sort_by_feature = \
+    sorted(data_no_outliers, key = lambda x: x[index_for['total_stock_value']])
+data_no_outliers = sort_by_feature[:]
+'''
+plt.figure(6)
+plt.title('Salary v total_stock_value removed outliers')
+for point in data_no_outliers:
+    plt.scatter( point[index_for['salary']], point[index_for['total_stock_value']] )
+plt.xlabel("salary")
+plt.ylabel("total_stock_value")
+'''
+'''
+plt.figure(7)
+plt.title('Salary v long_term_incentive')
+for point in data_no_outliers:
+    plt.scatter( point[index_for['salary']], point[index_for['long_term_incentive']] )
+plt.xlabel("salary")
+plt.ylabel("long_term_incentive")
+'''
+sort_by_feature = \
+    sorted(data_no_outliers, key = lambda x: x[index_for['long_term_incentive']])
+print(sort_by_feature[-1][index_for['poi']])
+data_no_outliers = sort_by_feature[:-1]
 
+sort_by_feature = \
+    sorted(data_no_outliers, key = lambda x: x[index_for['salary']])
+print(sort_by_feature[-1][index_for['poi']])
+print(sort_by_feature[-2][index_for['poi']])
+data_no_outliers = sort_by_feature[:-2]
+'''
+plt.figure(8)
+plt.title('Salary v long_term_incentive removed outliers')
+for point in data_no_outliers:
+    plt.scatter( point[index_for['salary']], point[index_for['long_term_incentive']] )
+plt.xlabel("salary")
+plt.ylabel("long_term_incentive")
+'''
+'''
+plt.figure(9)
+plt.title('from_this_person_to_poi v shared_receipt_with_poi')
+for point in data_no_outliers:
+    plt.scatter( point[index_for['from_this_person_to_poi']], point[index_for['shared_receipt_with_poi']])
+plt.xlabel("from_this_person_to_poi")
+plt.ylabel("shared_receipt_with_poi")
+'''
+'''
+plt.figure(10)
+plt.title('Salary v Bonus removed outliers')
+for point in data_no_outliers:
+    plt.scatter( point[index_for['salary']], point[index_for['bonus']] )
+plt.xlabel("salary")
+'''
 plt.show()
 
+print 'number of outliers removed',\
+                    len(data)-len(data_no_outliers)
 
 ################################################################################
 ### Task 3: Create new feature(s)
@@ -88,7 +170,6 @@ plt.show()
 my_dataset = data_no_outliers
 
 ### Extract features and labels from dataset for local testing
-
 labels, features = targetFeatureSplit(data)
 
 ################################################################################
@@ -108,7 +189,8 @@ clf = GaussianNB()
 ### folder for details on the evaluation method, especially the test_classifier
 ### function. Because of the small size of the dataset, the script uses
 ### stratified shuffle split cross validation. For more info: 
-### http://scikit-learn.org/stable/modules/generated/sklearn.cross_validation.StratifiedShuffleSplit.html
+### http://scikit-learn.org/stable/modules/generated/
+###                         sklearn.cross_validation.StratifiedShuffleSplit.html
 
 # Example starting point. Try investigating other evaluation techniques!
 from sklearn.cross_validation import train_test_split
